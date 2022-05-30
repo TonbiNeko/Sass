@@ -1,0 +1,140 @@
+$cBlack: black;
+$cWhite: white;
+
+.container {
+    width: 100%;
+    height: 40vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    & p {
+        font-weight: bold;
+        margin: 40px 0;
+    }
+
+    & .btn {
+        background-color: $cWhite;
+        border: 1px solid $cBlack;
+        color: $cBlack;
+        padding: 30px 100px;
+        font-size: 30px;
+        letter-spacing: 0.3em;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s;
+
+        &.cover-3d {
+            position: relative;
+            transform-style: preserve-3d;
+            // 子要素（before）を3Dで表現することができる
+            perspective: 300px;
+            // 奥行きを設定し、遠近感を持たせる
+            // 数が少ないと、近くで見ているように、多いと遠くから見ているようになる
+
+            & span {
+                display: inline-block;
+                transform: translateZ(20px);
+            }
+
+            &::before {
+                content: '';
+                display: inline-block;
+                width: 100%;
+                height: 100%;
+                background-color: $cBlack;
+                position: absolute;
+                top: 0;
+                left: 0;
+                transform: rotateX(90deg);
+                // X軸の回転を定義
+                transform-origin: top center;
+                // 回転の始まる位置を定義
+                transition: all 0.3s;
+                opacity: 0;
+                // ホバーしていない時非表示にする
+            }
+
+            &:hover {
+                color: $cWhite;
+
+                &::before {
+                    transform: none;
+                    opacity: 1;
+                    // ホバーした段階で表示されるようにする
+                }
+            }
+        }
+    } 
+}
+
+.c-container {
+    width: 100%;
+    height: 40vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    & .c-btn {
+        // background-color: $cWhite;
+        // border: 1px solid $cBlack;
+        // color: $cBlack;
+        // padding: 30px 100px;
+        // font-size: 30px;
+        // letter-spacing: 0.3em;
+        // font-weight: bold;
+        // cursor: pointer;
+        // transition: all 0.3s;
+        position: relative;
+        display: inline-block;
+        transform-style: preserve-3d;
+        perspective: 300px;
+        width: 350px;
+        height: 100px;
+        margin: 0 auto;
+        cursor: pointer;
+
+        &.cubic {
+            & span {
+                position: absolute;
+                top: 0;
+                left: 0;
+                // 子要素のspan２つを重ねて表示
+                width: 100%;
+                height: 100%;
+                border: 1px solid $cBlack;
+                line-height: 98px;
+                text-align: center;
+                font-size: 30px;
+                font-weight: bold;
+                transition: all 0.3s;
+            }
+
+            & .hovering {
+                background-color: $cBlack;
+                color: $cWhite;
+                transform: rotateX(90deg);
+                transform-origin: center center -50px;
+                // transform-origin: X軸　Y軸　Z軸
+            }
+
+            & .default {
+                background-color: $cWhite;
+                color: $cBlack;
+                transform: rotateX(0);
+                transform-origin: center center -50px;
+            }
+
+            &:hover {
+                & .hovering {
+                    transform: rotateX(0);
+                }
+                & .default {
+                    transform: rotateX(-90deg);
+                }
+            }
+        }
+    }
+}

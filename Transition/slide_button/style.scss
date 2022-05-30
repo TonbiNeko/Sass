@@ -1,0 +1,114 @@
+$cBlack: black;
+$cWhite: white;
+
+.container {
+    width: 100%;
+    height: 40vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    & p {
+        font-weight: bold;
+        margin: 40px 0;
+    }
+
+    & .btn {
+        background-color: $cWhite;
+        border: 1px solid $cBlack;
+        color: $cBlack;
+        padding: 30px 100px;
+        font-size: 30px;
+        letter-spacing: 0.3em;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s;
+
+        &.slide-back {
+            position: relative;
+            overflow: hidden;
+            // ボタン要素の中身からはみ出したものを表示しないようにしている
+            z-index: 1;
+            // ローカルスタックコンテキストを生成
+
+            & span {
+                display: inline-block;
+                width: 100%;
+                height: 100%;
+                background-color: $cBlack;
+                position: absolute;
+                top: 0;
+                left: 0;
+                transform: translateX(-100%);
+                // span要素をボタンの左側にずらしている
+                transition: transform 0.3s;
+                z-index: -1;
+                // ホバーした際にボタンの文字が消えないようにしている
+            }
+
+            &:hover {
+                color: $cWhite;
+
+                & span {
+                    transform: none;
+                }
+            }
+        }
+    } 
+}
+
+.container2 {
+    width: 100%;
+    height: 40vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    & p {
+        font-weight: bold;
+        margin: 40px 0;
+    }
+
+    & .btn2 {
+        background-color: $cWhite;
+        border: 1px solid $cBlack;
+        color: $cBlack;
+        padding: 30px 100px;
+        font-size: 30px;
+        letter-spacing: 0.3em;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s;
+
+        &.slide-back2 {
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+
+            &::before {
+                content: '';
+                // 擬似要素にcontentは必ず必要、ないと擬似要素生成されない、空タグに擬似要素は使用不可
+                display: inline-block;
+                width: 100%;
+                height: 100%;
+                background-color: $cBlack;
+                position: absolute;
+                top: 0;
+                left: 0;
+                transform: translateX(-100%);
+                transition: transform 0.3s;
+                z-index: -1;
+            }
+
+            &:hover {
+                color: $cWhite;
+
+                &::before {
+                    transform: none;
+                }
+            }
+        }
+    } 
+}
